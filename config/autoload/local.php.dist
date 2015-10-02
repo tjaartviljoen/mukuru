@@ -1,0 +1,18 @@
+<?php
+/**
+ * Local Configuration Override
+ */
+
+return array(
+	'doctrine'      => array(
+		'connection' => array(
+			'orm_default' => array(
+				'params' => array(
+					'dbname'   => 'exchange',
+					'user'     => 'root',
+					'password' => 'nrad'
+				)
+			)
+		)
+	)
+);
