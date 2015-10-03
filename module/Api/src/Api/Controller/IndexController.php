@@ -20,7 +20,7 @@ class IndexController extends AbstractRestfulJsonController
         {
             return $validatedRequestMethod;
         }
-        return new JsonModel(array('data' => "You are now authenticated"));
+        return new JsonModel(\User\Repository\User::authenticate($_POST['username'], $_POST['password']));
     }
 
     public function releaseAuthenticationAction()

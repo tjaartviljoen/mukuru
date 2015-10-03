@@ -23,10 +23,15 @@ $config    = Setup::createAnnotationMetadataConfiguration(
 	$isDevMode
 );
 $baseDir   = getcwd();
+
+include_once("$baseDir/module/Utility/src/Utility/Entity/EntityBase.php");
+include_once("$baseDir/module/Utility/src/Utility/Registry.php");
+
+
 $driver = new AnnotationDriver(
 	new Doctrine\Common\Annotations\AnnotationReader(),
 	array(
-		"$baseDir/module/Profile/src/Profile/Entity",
+		"$baseDir/module/User/src/User/Entity",
 	)
 );
 $config->setMetadataDriverImpl($driver);

@@ -13,10 +13,6 @@ chdir(dirname(__DIR__));
 //-- Timezone.
 date_default_timezone_set('Africa/Johannesburg');
 
-//-- Establish environment.
-$isDevEnv = ('development' == getenv('APPLICATION_ENV') || 'nrad.local' == php_uname("n"));
-define('IS_DEV_ENV', $isDevEnv);
-
 //-- Setup auto-loading.
 require 'init_autoloader.php';
 

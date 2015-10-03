@@ -1,5 +1,5 @@
 <?php
-namespace Profile;
+namespace User;
 
 return array(
 	'doctrine' => array(
