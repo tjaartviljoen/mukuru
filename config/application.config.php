@@ -7,6 +7,7 @@ return array(
         'Application',
         'Api',
         'Currency',
+        'Order',
         'User',
         'Utility',
         'Fixture'

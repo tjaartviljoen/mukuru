@@ -42,6 +42,7 @@ class Currency extends EntityBase
      * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
      */
     protected $surchargePercentage;
+
     /**
      * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
      */

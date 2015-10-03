@@ -1,5 +1,6 @@
 <?php
 namespace Api\Controller;
+
 use Currency\Repository\Currencies;
 use Utility\Registry;
 use Zend\View\Model\JsonModel;
@@ -12,45 +13,57 @@ use Zend\View\Model\JsonModel;
 class CurrencyController extends AbstractRestfulJsonController
 {
     /**
-     * Index method, used to display welcome message and instructions.
+     * Get a list of currencies.
      *
      * @return JsonModel
      */
     public function getList()
     {
         $this->_init();
+
+        // Check for token
         $token = $this->params()->fromQuery('token', 'get');
         if(null == $token)
         {
             return new JsonModel(array('data' => "You have pass a token with this API call"));
         }
 
+        // Check if user is authenticated
         Registry::restoreSession($token);
-
         if(!Registry::isAuthenticated())
         {
             return new JsonModel(array('data' => "You have to be authenticated to use this api"));
         }
 
+        // Get currencies
         return new JsonModel(Currencies::getList());
     }
 
+    /**
+     * Get a currency record.
+     *
+     * @param int $id
+     * @return JsonModel
+     */
     public function get($id)
     {
         $this->_init();
+
+        // Check for token
         $token = $this->params()->fromQuery('token', 'get');
         if(null == $token)
         {
             return new JsonModel(array('data' => "You have pass a token with this API call"));
         }
 
+        // Check if user is authenticated
         Registry::restoreSession($token);
-
         if(!Registry::isAuthenticated())
         {
             return new JsonModel(array('data' => "You have to be authenticated to use this api"));
         }
 
+        // Get currency record
         return new JsonModel(Currencies::get($id));
     }
 }
