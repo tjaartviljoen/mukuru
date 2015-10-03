@@ -7,7 +7,7 @@ class User extends Fixture
 {
 
     /**
-     * Build profile fixtures.
+     * Build user fixtures.
      */
     static public function build()
     {

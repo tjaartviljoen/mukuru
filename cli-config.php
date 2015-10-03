@@ -32,6 +32,7 @@ $driver = new AnnotationDriver(
 	new Doctrine\Common\Annotations\AnnotationReader(),
 	array(
 		"$baseDir/module/User/src/User/Entity",
+		"$baseDir/module/Currency/src/Currency/Entity",
 	)
 );
 $config->setMetadataDriverImpl($driver);
