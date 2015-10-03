@@ -1,5 +1,6 @@
 <?php
 namespace Utility;
+use Zend\Session\SessionManager;
 
 /**
  * Registry class for statically available Service Manager & Doctrine Entity Manager.
@@ -110,6 +111,13 @@ class Registry
         }
 
         return array();
+    }
+
+    public static function restoreSession($token)
+    {
+        $sessionManager = new SessionManager();
+        $sessionManager->setId($token);
+        $sessionManager->start();
     }
 
     /**

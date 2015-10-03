@@ -3,7 +3,7 @@ namespace User\Repository;
 
 use Utility\Registry;
 
-class User
+class Users
 {
     /**
      * User authentication proxy method

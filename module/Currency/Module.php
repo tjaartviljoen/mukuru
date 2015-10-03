@@ -1,16 +1,12 @@
 <?php
 namespace Currency;
 
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\MvcEvent;
-use Zend\View\Model\JsonModel;
-
 class Module
 {
 
     public function getConfig()
     {
-        return array();
+        return include __DIR__ . '/config/module.config.php';
     }
 
     public function getAutoloaderConfig()
@@ -26,7 +22,7 @@ class Module
     {
         return array(
             'invokables' => array(
-                //__NAMESPACE__ . '.Service.User' => __NAMESPACE__ . '\Service\User',
+                __NAMESPACE__ . '.Service.Currency' => __NAMESPACE__ . '\Service\Currency',
             )
         );
     }

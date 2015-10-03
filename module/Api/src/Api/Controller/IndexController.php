@@ -1,8 +1,7 @@
 <?php
 namespace Api\Controller;
-use Utility\Registry;
 use Zend\View\Model\JsonModel;
-use \User\Repository\User as UserRepository;
+use \User\Repository\Users as UserRepository;
 
 /**
  * Class IndexController
@@ -11,19 +10,7 @@ use \User\Repository\User as UserRepository;
  */
 class IndexController extends AbstractRestfulJsonController
 {
-    const METHOD_GET    = 'GET';
-    const METHOD_POST   = 'POST';
 
-    /**
-     * Initializer method for Registry
-     *
-     * @return IndexController
-     */
-    protected function _init()
-    {
-        Registry::setServiceManager($this->serviceLocator);
-        return $this;
-    }
 
     /**
      * Index method, used to display welcome message and instructions.
@@ -79,31 +66,5 @@ class IndexController extends AbstractRestfulJsonController
         $request = $this->getJsonRequest();
 
         return new JsonModel(UserRepository::releaseAuthentication($request['token']));
-    }
-
-    /**
-     * Check that $_SERVER['REQUEST_METHOD'] is what we expect, otherwise set statusCode to 405 and return error message.
-     *
-     * param string $expectedMethod
-     * @return bool|JsonModel
-     */
-    protected function validateRequestMethod($expectedMethod)
-    {
-        if($_SERVER['REQUEST_METHOD'] != $expectedMethod)
-        {
-            $this->response->setStatusCode(405);
-            return new JsonModel(array('Message' => 'Method Not Allowed, please use ' . $expectedMethod));
-        }
-        return true;
-    }
-
-    /**
-     * Get Json request data from PHP input stream
-     *
-     * @return mixed
-     */
-    protected function getJsonRequest()
-    {
-        return json_decode(file_get_contents('php://input'), true);
     }
 }
