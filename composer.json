@@ -4,10 +4,10 @@
   "license": "BSD-3-Clause",
   "keywords": [
     "framework",
-    "exchnage",
+    "exchange",
     "zf2"
   ],
-  "homepage": "http://exchange.local/",
+  "homepage": "http://mukuru.t.local/",
   "require": {
     "php": ">=5.3.3",
     "zendframework/zendframework": "2.3.3",
