@@ -70,7 +70,7 @@ class User extends EntityBase
     protected $created;
 
     //-- Meta data.
-    protected $basicFields    = array(
+    protected $basicFields = array(
         'id',
         'username',
         'password',
@@ -115,7 +115,7 @@ class User extends EntityBase
 
     /**
      * Populate from an array.
-     * @param array   $data
+     * @param array $data
      * @param boolean $rebuild
      */
     public function fromArray($data = array(), $rebuild = false)
@@ -123,7 +123,7 @@ class User extends EntityBase
         parent::fromArray($data, $rebuild);
         if (isset($data['password']))
         {
-            $this->salt     = sha1(mt_rand(1000000000, 9999999999));
+            $this->salt = sha1(mt_rand(1000000000, 9999999999));
             $this->password = sha1(sha1($data['password']) . 'Salt' . $this->salt);
         }
     }
@@ -131,6 +131,7 @@ class User extends EntityBase
     public function getUserDataForRegistry($token)
     {
         return array(
+            'id'           => $this->id,
             'emailAddress' => $this->email,
             'firstName'    => $this->firstName,
             'familyName'   => $this->familyName,
@@ -145,7 +146,7 @@ class User extends EntityBase
      */
     public function onPrePersist()
     {
-        $this->created  = new \DateTime("now");
+        $this->created = new \DateTime("now");
         $this->fullName = $this->firstName . ' ' . $this->familyName;
     }
 

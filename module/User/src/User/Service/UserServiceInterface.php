@@ -3,7 +3,7 @@ namespace User\Service;
 
 interface UserServiceInterface
 {
-    public function authenticate(String $username, String $password);
+    public function authenticate($username, $password);
 
-    public function releaseAuthentication(String $token);
+    public function releaseAuthentication($token);
 }
