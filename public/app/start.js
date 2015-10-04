@@ -34,11 +34,13 @@
                     }
                     else
                     {
+                        _w.onActiveAccountFailure();
                         window.location.hash = "/";
                     }
 
                 }, this),
                 error: $.proxy(function (response) {
+                    _w.onActiveAccountFailure();
                     window.location.hash = "/";
                 }, this)
             });

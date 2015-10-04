@@ -22,7 +22,7 @@ namespace Doctrine\DBAL\Cache;
 use Doctrine\Common\Cache\Cache;
 
 /**
- * Query Cache User handles the data relevant for query caching.
+ * Query Cache Profile handles the data relevant for query caching.
  *
  * It is a value object, setter methods return NEW instances.
  *
