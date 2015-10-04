@@ -6,7 +6,8 @@ use Utility\Registry;
 class Users
 {
     /**
-     * User authentication proxy method
+     * User authentication proxy method.
+     *
      * @param string $username
      * @param string $password
      * @return array
@@ -18,7 +19,8 @@ class Users
     }
 
     /**
-     * User release authentication proxy method
+     * User release authentication proxy method.
+     *
      * @param string $token
      * @return array
      */
@@ -26,5 +28,17 @@ class Users
     {
         $service = Registry::getServiceManager()->get('User.Service.User');
         return $service->releaseAuthentication($token)->toArray();
+    }
+
+    /**
+     * Get user data proxy method.
+     *
+     * @param $token
+     * @return array
+     */
+    public static function getUserData($token)
+    {
+        $service = Registry::getServiceManager()->get('User.Service.User');
+        return $service->getUserData($token)->toArray();
     }
 }

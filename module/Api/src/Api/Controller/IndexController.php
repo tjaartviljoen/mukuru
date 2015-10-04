@@ -45,6 +45,24 @@ class IndexController extends AbstractRestfulJsonController
         return new JsonModel(UserRepository::authenticate($request['username'], $request['password']));
     }
 
+    public function getUserDataAction()
+    {
+        $this->_init();
+
+        // Make sure request method is POST, send 405 if not.
+        $validatedRequestMethod = $this->validateRequestMethod(IndexController::METHOD_POST);
+        if(true !== $validatedRequestMethod)
+        {
+            return $validatedRequestMethod;
+        }
+
+        // Get JSON parameters
+        $request = $this->getJsonRequest();
+
+        // Authenticate
+        return new JsonModel(UserRepository::getUserData($request['token']));
+    }
+
     /**
      * Release user authentication.
      * Parameter  - php://input {"username":[username],"password":[password]}.

@@ -31,6 +31,16 @@ return array(
                     ),
                 ),
             ),
+            'rest-get-user-data' => array(
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/api/users/v1/get-user-data',
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\Index',
+                        'action'     => 'get-user-data'
+                    ),
+                ),
+            ),
             'rest-currencies'                  => array(
                 'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(

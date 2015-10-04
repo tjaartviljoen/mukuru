@@ -56,6 +56,21 @@ class User implements UserServiceInterface
         // Return success response
         return new AuthenticationResponse('Success', 'User authentication released');
     }
+
+    public function getUserData($token)
+    {
+        $sessionManager = new SessionManager();
+        $sessionManager->setId($token);
+        $sessionManager->start();
+
+        $userData = Registry::getUserSessionData();
+
+        if(!empty($userData))
+        {
+            return new AuthenticationResponse("Success", "User data retrieved", $userData);
+        }
+        return new AuthenticationResponse("Failure", "No user data available");
+    }
 }
 
 class AuthenticationResponse

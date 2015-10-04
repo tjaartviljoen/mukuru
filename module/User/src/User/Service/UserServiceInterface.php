@@ -6,4 +6,6 @@ interface UserServiceInterface
     public function authenticate($username, $password);
 
     public function releaseAuthentication($token);
+
+    public function getUserData($token);
 }
