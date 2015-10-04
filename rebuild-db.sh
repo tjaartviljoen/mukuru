@@ -9,5 +9,3 @@ echo -e "\nRunning fixtures..."
 php ./public/index.php fixture build
 echo -e "\nKicking the cache..."
 rm -rf data/cache/module*
-wget "http://mukuru.t.local/ck.php"
-rm -f ck.*
