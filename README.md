@@ -1,77 +1,53 @@
-ZendSkeletonApplication
-=======================
+Mukuru Technical Assessment Deployment Instructions
+===================================================
 
-Introduction
-------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+
+Notes
+-----
+This project was developed on CentOS7 and assumes an environment that allows for setting up a relevant virtual host.
+Due to time constraints the code was tested only on CentOS 7 running php 5.4 against a MySQL 5.5 database with the
+latest Chrome browser.
+
 
 Installation
 ------------
+1. Setup a virtual host for the project and restart the web server.
+   An example apache vhost configuration is provided in deploy/vhost_exchange.conf
+   Please ensure that specified folders is corrected in the vhost config before restarting the web server.
+2. Create a database for the project, assuming database name 'mukuru';
+    CREATE DATABASE `mukuru` /*!40100 DEFAULT CHARACTER SET utf8 */;
+3. Configure config/autoload/local.php for correct database access.
+4. Create database tables and populate initial data by running the following in project root:
+    4.1 chmod u+x rebuild-db.sh
+        ./rebuild-db.sh
+	4.2 or import the sql_import file in the config/deploy folder by running:
+	    mysql -u [username] -p mukuru < config/deploy/mukuru_import.sql from the project root.
+	
+5. Ensure that the rebuild script / sql import executed without errors.
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
+Users
+-----
+1. There are 2 client accounts that can be used to log in.
+    1.1 tjaart.viljoen:12345678
+	1.2 test.user:12345678
+2. More users can be added in module/User/src/User/Fixture/User.php if you want to set up your own accounts for testing.
+	2.1 ./rebuild-db.sh will have to be executed again for new fixture users to be inserted into the database. (Running ./rebuild-db.sh will clear all existing data and replace it with fixture data)
+	
+Emails
+------
+1. Emails are sent to the logged in user's email address should it be neccessary. You can edit any of the user email addresses in mySql or in the 
+   module/User/src/User/Fixture/User.php file.
 
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="https://packages.zendframework.com" zendframework/skeleton-application path/to/install
+Configuration
+-------------
+1. Surcharge and Discount can be configured in the currency table per currency.
+2. Email triggers can be set by setting the currency record's execute_after value to email.
 
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
+Web application usage
+---------------------
 
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
+Scripts
+-------
+To fetch the latest exchange rates from jsonrates run the following command in the project root:
+ php public/index.php retrieve rates
 
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
-
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
-
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-
-You would then invoke `composer` to install dependencies per the previous
-example.
-
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
-
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
-
-Web Server Setup
-----------------
-
-### PHP CLI Server
-
-The simplest way to get started if you are using PHP 5.4 or above is to start the internal PHP cli-server in the root directory:
-
-    php -S 0.0.0.0:8080 -t public/ public/index.php
-
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
-
-**Note: ** The built-in CLI server is *for development only*.
-
-### Apache Setup
-
-To setup apache, setup a virtual host to point to the public/ directory of the
-project and you should be ready to go! It should look something like below:
-
-    <VirtualHost *:80>
-        ServerName zf2-tutorial.localhost
-        DocumentRoot /path/to/zf2-tutorial/public
-        SetEnv APPLICATION_ENV "development"
-        <Directory /path/to/zf2-tutorial/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Order allow,deny
-            Allow from all
-        </Directory>
-    </VirtualHost>
