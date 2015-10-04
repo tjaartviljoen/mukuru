@@ -43,21 +43,7 @@ class Email
                     $this->_service->setFrom($mValue);
                     break;
                 case 'To':
-                    if (IS_DEV_ENV)
-                    {
-                        #-> Environmental override.
-                        \Debug::log(
-                            'Email.send Override: ' . $mValue,
-                            isset($aContext['Subject'])
-                                ? $aContext['Subject']
-                                : 'No subject'
-                        );
-                        $this->_service->addTo('quantumweaver@gmail.com');
-                    }
-                    else
-                    {
-                        $this->_service->addTo($mValue);
-                    }
+                    $this->_service->addTo($mValue);
                     break;
                 case 'Cc':
                     if (!IS_DEV_ENV && !IS_STAGE_ENV)

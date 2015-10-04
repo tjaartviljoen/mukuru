@@ -256,9 +256,19 @@ class ExchangeOrder
     {
         if ('email' == $this->executeAfter)
         {
-
+            $userData = Registry::getUserSessionData();
             $email = new Email();
-            $email->send();
+            $email->send(array(
+                'From' => 'random@exchange.com',
+                'To' => $userData['emailAddress'],
+                'Subject' => 'Your foreign currency purchase.',
+                'Body' => 'Hi ' . $userData['fullName'] . '.
+                Thank you for your purchase of ' . $this->currencyCode . ' ' . $this->foreignCurrencyAmount . '.
+                You will be billed ZAR ' . $this->totalBilledAmount . '.
+
+                Regards,
+                the Mukuru team.'
+            ));
         }
     }
 
