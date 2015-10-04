@@ -1726,6 +1726,7 @@
 			 * Show and hook up logout button
 			 */
 			$('#lnkLogin').hide();
+			$('#lnkHome').hide();
 			$('#lnkLogout').removeClass('ghost');
 			$('#lnkLogout').show();
 			$('#lnkLogout').click(function ()

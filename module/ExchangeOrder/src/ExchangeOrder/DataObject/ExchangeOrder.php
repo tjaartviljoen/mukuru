@@ -177,7 +177,7 @@ class ExchangeOrder
     {
         return array(
             'foreignCurrencyAmount' => round($this->foreignCurrencyAmount, 2),
-            'localCurrencyAmount'   => round($this->localCurrencyAmount, 2)
+            'localCurrencyAmount'   => round($this->totalBilledAmount, 2)
         );
     }
 
@@ -197,23 +197,32 @@ class ExchangeOrder
                 : $currency['baseExchangeRate'];
 
             $this->surchargePercentage = $currency['surchargePercentage'];
+            error_log('$this->surchargePercentage: ' . $this->surchargePercentage);
             $this->totalDiscountPercentage = $currency['totalDiscountPercentage'];
             $this->executeAfter = $currency['executeAfter'];
 
             $surchargeRate = bcdiv($this->surchargePercentage, 100.0, 7);
+            error_log('$this->exchangeRate: ' . $this->exchangeRate);
+            error_log('$surchargeRate: ' . $surchargeRate);
 
             if (0.0 < $this->foreignCurrencyAmount)
             {
-                error_log('Using $this->foreignCurrencyAmount');
-                $this->localCurrencyAmount = bcdiv($this->foreignCurrencyAmount, $surchargeRate, 7);
+                error_log('$this->foreignCurrencyAmount: ' . $this->foreignCurrencyAmount);
+
+                $this->localCurrencyAmount = bcdiv($this->foreignCurrencyAmount, $this->exchangeRate, 7);
+                error_log('$this->localCurrencyAmount: ' . $this->localCurrencyAmount);
+
+
                 $this->surchargeAmount = bcmul($this->localCurrencyAmount, $surchargeRate, 7);
+                error_log('$this->surchargeAmount: ' . $this->surchargeAmount);
+
                 $this->totalBilledAmount = bcadd($this->localCurrencyAmount, $this->surchargeAmount, 7);
             }
             else if (0.0 < $this->localCurrencyAmount)
             {
-                error_log('Using $this->localCurrencyAmount');
                 $this->surchargeAmount = bcsub($this->localCurrencyAmount, bcdiv($this->localCurrencyAmount, $surchargeRate + 1, 7), 7);
-                $this->foreignCurrencyAmount = bcmul(bcsub($this->localCurrencyAmount, $this->surchargeAmount, 7), $this->exchangeRate, 7);
+                $localCurrencyLeftAfterSurcharge = bcsub($this->localCurrencyAmount, $this->surchargeAmount, 7);
+                $this->foreignCurrencyAmount = bcmul($localCurrencyLeftAfterSurcharge, $this->exchangeRate, 7);
                 $this->totalBilledAmount = $this->localCurrencyAmount;
             }
         }

@@ -46,17 +46,17 @@ class ExchangeOrder extends EntityBase
     protected $totalDiscountPercentage;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, name="foreign_currency_amount", nullable=false)
+     * @ORM\Column(type="decimal", precision=20, scale=7, name="foreign_currency_amount", nullable=false)
      */
     protected $foreignCurrencyAmount;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, name="local_currency_amount", nullable=false)
+     * @ORM\Column(type="decimal", precision=20, scale=7, name="local_currency_amount", nullable=false)
      */
     protected $localCurrencyAmount;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, name="total_billed_amount", nullable=false)
+     * @ORM\Column(type="decimal", precision=20, scale=7, name="total_billed_amount", nullable=false)
      */
     protected $totalBilledAmount;
 
