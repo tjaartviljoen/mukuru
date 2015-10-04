@@ -2,6 +2,7 @@
 namespace ExchangeOrder\DataObject;
 
 use Currency\Repository\Currencies;
+use Utility\Email;
 use Utility\Registry;
 
 class ExchangeOrder
@@ -172,6 +173,14 @@ class ExchangeOrder
         return $this;
     }
 
+    public function preview()
+    {
+        return array(
+            'foreignCurrencyAmount' => round($this->foreignCurrencyAmount, 2),
+            'localCurrencyAmount'   => round($this->localCurrencyAmount, 2)
+        );
+    }
+
     /**
      * Calculate required surcharge, discount,
      * @return $this
@@ -247,7 +256,9 @@ class ExchangeOrder
     {
         if ('email' == $this->executeAfter)
         {
-            // Send email to dude
+
+            $email = new Email();
+            $email->send();
         }
     }
 
@@ -260,9 +271,9 @@ class ExchangeOrder
     {
         return array(
             'currencyCode'            => $this->currencyCode,
-            'foreignCurrencyAmount'   => $this->foreignCurrencyAmount,
-            'totalBilledAmount'       => $this->totalBilledAmount,
-            'totalDiscountPercentage' => $this->totalDiscountPercentage
+            'foreignCurrencyAmount'   => round($this->foreignCurrencyAmount, 2),
+            'totalBilledAmount'       => round($this->totalBilledAmount, 2),
+            'totalDiscountPercentage' => round($this->totalDiscountPercentage, 2)
         );
     }
 

@@ -102,16 +102,20 @@ class ExchangeOrderController extends AbstractRestfulJsonController
                 'parameters' => $this->createParametersRequired));
         }
 
-        // Calculate, validate and place order.
+        // Calculate, validate & preview | place order.
         $order = new \ExchangeOrder\DataObject\ExchangeOrder();
         $order->fromArray($data)
               ->calculate();
 
         if($order->validate())
         {
-            return new JsonModel(ExchangeOrders::create($order));
+            $response = isset($data['preview']) && true == $data['preview']
+                ? $order->preview()
+                : ExchangeOrders::create($order);
+            return new JsonModel($response);
         }
 
+        // Order did not validate, return error.
         $this->response->setStatusCode(400);
         return new JsonModel(array(
             'data' => "Validation failed on this order, please check that you have entered all the parameters required for this call",

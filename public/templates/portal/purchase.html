@@ -1,10 +1,17 @@
 <div class="cover row">
-	<h1>Purchase</h1>
+	<h1>Purchase currency</h1>
+</div>
+<div>
+    Please select a currency to continue
 </div>
 <div class="cover row">
 	<div id="currencyContainer"></div>
 </div>
-<div class="cover row">
+<div class="row">
+    <br>
+    <br>
+</div>
+<div id="frmPurchaseContainer" class="cover row header-block" style="display: none">
 	<form id="frmPurchase" class="form">
 		<div class="row">
 			<div class="col-md-6">
@@ -14,13 +21,16 @@
 				<div class="form-group" id="[tid]_foreignAmount">[foreignAmount]</div>
 			</div>
 		</div>
-		<div class="cover row">
-			<div class="col-md-12">
-				&nbsp;<br/>
+        <br/>
+		<div class=" row">
+			<div class="col-md-7">
 
-				<div class="form-group" id="[tid]_btnCalculate">[btnCalculate]</div>
-				<div class="form-group" id="[tid]_btnPlaceOrder">[btnPlaceOrder]</div>
+			</div>
+			<div class="col-md-5">
+                <div style="float:left" id="[tid]_btnCalculate">[btnCalculate]</div>
+				<div style="float:right" id="[tid]_btnPlaceOrder">[btnPlaceOrder]</div>
 			</div>
 		</div>
+        <br>
 	</form>
 </div>
