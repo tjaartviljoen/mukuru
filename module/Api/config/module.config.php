@@ -40,12 +40,22 @@ return array(
                     ),
                 ),
             ),
+            'rest-exchange-orders'             => array(
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/api/exchange-orders/v1',
+                    'defaults' => array(
+                        'controller' => 'Api\Controller\ExchangeOrder',
+                    ),
+                ),
+            ),
         ),
     ),
     'controllers'  => array(
         'invokables' => array(
-            'Api\Controller\Index'    => 'Api\Controller\IndexController',
-            'Api\Controller\Currency' => 'Api\Controller\CurrencyController',
+            'Api\Controller\Index'         => 'Api\Controller\IndexController',
+            'Api\Controller\Currency'      => 'Api\Controller\CurrencyController',
+            'Api\Controller\ExchangeOrder' => 'Api\Controller\ExchangeOrderController',
 
         ),
     ),

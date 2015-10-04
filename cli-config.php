@@ -33,7 +33,7 @@ $driver = new AnnotationDriver(
 	array(
 		"$baseDir/module/User/src/User/Entity",
 		"$baseDir/module/Currency/src/Currency/Entity",
-		"$baseDir/module/Order/src/Order/Entity",
+		"$baseDir/module/ExchangeOrder/src/ExchangeOrder/Entity",
 	)
 );
 $config->setMetadataDriverImpl($driver);

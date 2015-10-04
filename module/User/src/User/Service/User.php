@@ -58,7 +58,7 @@ class User implements UserServiceInterface
     }
 }
 
-class AuthenticationResponse extends ArrayAdapter
+class AuthenticationResponse
 {
     public $status;
     public $message;

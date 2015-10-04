@@ -1,5 +1,5 @@
 <?php
-namespace Order\Entity;
+namespace ExchangeOrder\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Utility\Entity\EntityBase;
@@ -7,9 +7,9 @@ use Utility\Entity\EntityBase;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="order")
+ * @ORM\Table(name="exchange_order")
  */
-class Order extends EntityBase
+class ExchangeOrder extends EntityBase
 {
     /**
      * @ORM\Id
@@ -31,32 +31,37 @@ class Order extends EntityBase
     protected $user;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="exchange_rate", nullable=false)
      */
     protected $exchangeRate;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="surcharge_percentage", nullable=false)
      */
     protected $surchargePercentage;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="total_discount_percentage", nullable=false)
      */
     protected $totalDiscountPercentage;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="foreign_currency_amount", nullable=false)
      */
     protected $foreignCurrencyAmount;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="local_currency_amount", nullable=false)
      */
     protected $localCurrencyAmount;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="total_billed_amount", nullable=false)
+     */
+    protected $totalBilledAmount;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="surcharge_amount", nullable=false)
      */
     protected $surchargeAmount;
 
@@ -64,6 +69,7 @@ class Order extends EntityBase
      * @ORM\Column(type="datetime", nullable=false);
      */
     protected $created;
+
 
     //-- Meta data.
     protected $basicFields = array(

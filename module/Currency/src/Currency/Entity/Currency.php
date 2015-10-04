@@ -29,27 +29,27 @@ class Currency extends EntityBase
     protected $code;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="base_exchange_rate", nullable=false)
      */
     protected $baseExchangeRate;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="updated_exchange_rate", nullable=true)
      */
     protected $updatedExchangeRate;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="surcharge_percentage", nullable=false)
      */
     protected $surchargePercentage;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=7, nullable=false)
+     * @ORM\Column(type="decimal", precision=10, scale=7, name="total_discount_percentage", nullable=false)
      */
     protected $totalDiscountPercentage;
 
     /**
-     * @ORM\Column(type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=30, name="execute_after", nullable=true)
      */
     protected $executeAfter;
 
@@ -62,6 +62,9 @@ class Currency extends EntityBase
      * @ORM\Column(type="datetime", nullable=true);
      */
     protected $updated;
+
+
+
 
     //-- Meta data.
     protected $basicFields = array(

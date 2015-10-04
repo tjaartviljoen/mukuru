@@ -26,7 +26,7 @@ class Module
     {
         return array(
             'invokables' => array(
-                //__NAMESPACE__ . '.Service.User' => __NAMESPACE__ . '\Service\User',
+                __NAMESPACE__ . '.Service.ExchangeOrder' => __NAMESPACE__ . '\Service\ExchangeOrder',
             )
         );
     }

@@ -25,6 +25,7 @@ class CurrencyController extends AbstractRestfulJsonController
         $token = $this->params()->fromQuery('token', 'get');
         if(null == $token)
         {
+            $this->response->setStatusCode(400);
             return new JsonModel(array('data' => "You have pass a token with this API call"));
         }
 
@@ -32,6 +33,7 @@ class CurrencyController extends AbstractRestfulJsonController
         Registry::restoreSession($token);
         if(!Registry::isAuthenticated())
         {
+            $this->response->setStatusCode(412);
             return new JsonModel(array('data' => "You have to be authenticated to use this api"));
         }
 
@@ -53,6 +55,7 @@ class CurrencyController extends AbstractRestfulJsonController
         $token = $this->params()->fromQuery('token', 'get');
         if(null == $token)
         {
+            $this->response->setStatusCode(400);
             return new JsonModel(array('data' => "You have pass a token with this API call"));
         }
 
@@ -60,6 +63,7 @@ class CurrencyController extends AbstractRestfulJsonController
         Registry::restoreSession($token);
         if(!Registry::isAuthenticated())
         {
+            $this->response->setStatusCode(412);
             return new JsonModel(array('data' => "You have to be authenticated to use this api"));
         }
 

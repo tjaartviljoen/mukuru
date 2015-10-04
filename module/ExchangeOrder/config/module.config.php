@@ -1,5 +1,5 @@
 <?php
-namespace Order;
+namespace ExchangeOrder;
 
 return array(
 	'doctrine' => array(

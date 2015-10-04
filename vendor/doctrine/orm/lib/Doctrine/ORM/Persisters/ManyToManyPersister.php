@@ -62,7 +62,7 @@ class ManyToManyPersister extends AbstractCollectionPersister
      *
      * @override
      *
-     * @internal Order of the parameters must be the same as the order of the columns in getDeleteRowSql.
+     * @internal ExchangeOrder of the parameters must be the same as the order of the columns in getDeleteRowSql.
      */
     protected function getDeleteRowSQLParameters(PersistentCollection $coll, $element)
     {
@@ -84,7 +84,7 @@ class ManyToManyPersister extends AbstractCollectionPersister
      *
      * @override
      *
-     * @internal Order of the parameters must be the same as the order of the columns in getInsertRowSql.
+     * @internal ExchangeOrder of the parameters must be the same as the order of the columns in getInsertRowSql.
      */
     protected function getInsertRowSQL(PersistentCollection $coll)
     {
@@ -110,7 +110,7 @@ class ManyToManyPersister extends AbstractCollectionPersister
      *
      * @override
      *
-     * @internal Order of the parameters must be the same as the order of the columns in getInsertRowSql.
+     * @internal ExchangeOrder of the parameters must be the same as the order of the columns in getInsertRowSql.
      */
     protected function getInsertRowSQLParameters(PersistentCollection $coll, $element)
     {
@@ -186,7 +186,7 @@ class ManyToManyPersister extends AbstractCollectionPersister
      *
      * @override
      *
-     * @internal Order of the parameters must be the same as the order of the columns in getDeleteSql.
+     * @internal ExchangeOrder of the parameters must be the same as the order of the columns in getDeleteSql.
      */
     protected function getDeleteSQLParameters(PersistentCollection $coll)
     {

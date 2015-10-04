@@ -1,5 +1,5 @@
 <?php
-namespace Order;
+namespace ExchangeOrder;
 
 
 class Module
@@ -23,7 +23,7 @@ class Module
     {
         return array(
             'invokables' => array(
-                __NAMESPACE__ . '.Service.Order' => __NAMESPACE__ . '\Service\Order',
+                __NAMESPACE__ . '.Service.ExchangeOrder' => __NAMESPACE__ . '\Service\ExchangeOrder',
             )
         );
     }
