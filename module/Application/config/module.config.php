@@ -92,11 +92,19 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-    // Placeholder for console routes
     'console' => array(
         'router' => array(
             'routes' => array(
-            ),
-        ),
-    ),
+                'rest-get--currency-rates' => array(
+                    'options' => array(
+                        'route'    => 'currencies update',
+                        'defaults' => array(
+                            'controller' => 'Application\Controller\Index',
+                            'action'     => 'getJsonRates'
+                        )
+                    )
+                )
+            )
+        )
+    )
 );

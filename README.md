@@ -2,9 +2,10 @@ Mukuru Technical Assessment Deployment Instructions
 ===================================================
 
 
-Notes
------
+Please Note
+-----------
 This project was developed on CentOS7 and assumes an environment that allows for setting up a relevant virtual host.
+Please ensure that Sendmail is setup correctly for application emails to function correctly.
 Due to time constraints the code was tested only on CentOS 7 running php 5.4 against a MySQL 5.5 database with the
 latest Chrome browser.
 
@@ -45,9 +46,42 @@ Configuration
 
 Web application usage
 ---------------------
+1. Click on login.
+2. Enter username (tjaart.viljoen or test.user).
+3. Enter password (12345678).
+4. On purchase currency screen, click on one of the four currencies provided.
+5. Enter a local amount or foreign amount you wish to purchase.
+6. Click on the Preview order button.
+7. If you're satisfied with the order, click on the Place order button.
+8. The order will be placed and you will be redirected to a summary screen containing your order details.
+9. If you want to make another purchase, click on the Make another purchase button and repeat from steps 4 onwards.
+10.Click on the Logout button to logout.
+
+Web service usage
+---------------------
+1. Authenticate User (POST)
+    - /api/users/v1/authenticate (Raw Json input E.G. - {"username":"tjaart.viljoen","password":"12345678"} )
+2. Get User Data (POST)
+    - /api/users/v1/get-user-data (Raw Json input E.G. - {"token":"9kocgjv3e5541ide37g24i6tf4"} )
+3. Release User Authentication (POST)
+    - /api/users/v1/release-authentication (Raw Json input E.G. - {"token":"9kocgjv3e5541ide37g24i6tf4"} )
+4. Get Currencies (GET)
+    - /api/currencies/v1 (GET request E.G. - /api/currencies/v1?token=9kocgjv3e5541ide37g24i6tf4 )
+5. Get Currency (GET)
+    - /api/currencies/v1 (GET request E.G. - /api/currencies/v1?token=9kocgjv3e5541ide37g24i6tf4&id=1 )
+6. Preview Exchange Order (POST)
+    - /exchange-orders/v1 (POST request - Values: token=9kocgjv3e5541ide37g24i6tf4, currencyId=3, userId=1, foreignCurrencyAmount=100, localCurrencyAmount, preview=1)
+7. Place Exchange Order (POST)
+    - /exchange-orders/v1 (POST request - Values: token=9kocgjv3e5541ide37g24i6tf4, currencyId=3, userId=1, foreignCurrencyAmount=100, localCurrencyAmount, preview=0)
+8. View All Orders (GET)
+    - /api/exchange-orders/v1 (GET request E.G. - /api/exchange-orders/v1?token=9kocgjv3e5541ide37g24i6tf4)
+8. View Order (GET)
+    - /api/exchange-orders/v1 (GET request E.G. - /api/exchange-orders/v1?token=9kocgjv3e5541ide37g24i6tf4&id=1)
+
+
 
 Scripts
 -------
 To fetch the latest exchange rates from jsonrates run the following command in the project root:
- php public/index.php retrieve rates
+    - php public/index.php currencies update (This will automatically be executed when you run ./rebuild-db.sh from the project root).
 

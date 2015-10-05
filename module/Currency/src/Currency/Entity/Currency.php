@@ -83,6 +83,15 @@ class Currency extends EntityBase
     );
 
     /**
+     * Set updatedExchangeRate
+     *
+     * @param float $value
+     */
+    public function updateRate($value)
+    {
+        $this->updatedExchangeRate = $value;
+    }
+    /**
      * @ORM\PrePersist
      */
     public function onPrePersist()

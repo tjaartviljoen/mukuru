@@ -9,3 +9,6 @@ echo -e "\nRunning fixtures..."
 php ./public/index.php fixture build
 echo -e "\nKicking the cache..."
 rm -rf data/cache/module*
+
+echo -e "\nGetting Json rates..."
+php public/index.php currencies update

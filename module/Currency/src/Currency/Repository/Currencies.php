@@ -20,4 +20,10 @@ class Currencies
         $service = Registry::getServiceManager()->get('Currency.Service.Currency');
         return $service->get($id);
     }
+
+    public static function getJsonRates()
+    {
+        $service = Registry::getServiceManager()->get('Currency.Service.Currency');
+        return $service->getJsonRates();
+    }
 }
